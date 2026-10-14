@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Agendar · Bruxa do Piercing</title>
+<meta name="description" content="Peça seu horário com a Moni, a Bruxa do Piercing, em Joinville ou nas datas de São Paulo e Curitiba.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#16100d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agendar · Bruxa do Piercing">
+<meta property="og:description" content="Peça seu horário com a Moni, a Bruxa do Piercing, em Joinville ou nas datas de São Paulo e Curitiba.">
+<meta property="og:image" content="https://azeugral.github.io/bruxa-do-piercing/og-bruxa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Bruxa do Piercing entre duas fotos de perfurações">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=1">
+</head>
+<body class="interna">
+<a class="sr" href="#conteudo">Pular para o conteúdo</a>
+<div class="progresso" data-prog aria-hidden="true"><i></i></div>
+<header class="nav">
+  <a class="nav-logo" href="./" aria-label="Bruxa do Piercing, início"><img src="assets/img/logo-bruxa-300.webp" srcset="assets/img/logo-bruxa-300.webp 300w, assets/img/logo-bruxa-600.webp 600w" sizes="120px" alt="Bruxa do Piercing" width="600" height="412"></a>
+  <button class="nav-abrir" type="button" aria-expanded="false" aria-controls="menu"><span>Menu</span><i aria-hidden="true"></i></button>
+  <nav class="nav-menu" id="menu" aria-label="Principal"><ul class="menu"><li><a href="./">Início</a></li><li><a href="./#perfuracoes">Perfurações</a></li><li><a href="trabalhos.html">Trabalhos</a></li><li><a href="./#joias">Joias</a></li><li><a href="./#coven">O Coven</a></li><li><a href="./#sobre">Sobre</a></li></ul><a class="btn peq" href="agendar.html"><span>Agendar</span><i><svg class="i-estrela" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 7 4 10 11 12-7 2-10 5-11 12-1-7-4-10-11-12 7-2 10-5 11-12z"/></svg></i></a></nav>
+</header>
+<main id="conteudo">
+<section class="secao topo-pag" aria-labelledby="t-ag">
+  <div class="wrap">
+    <div class="cab centro">
+      <p class="rot">Agenda aberta</p>
+      <h1 id="t-ag">Agendar perfuração</h1>
+      <p class="lead">Preencha o que souber. A mensagem é montada aqui e abre pronta no WhatsApp da Moni, que responde com os horários livres.</p>
+    </div>
+    <form class="form" data-agendar novalidate>
+      <div class="campo">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" name="nome" autocomplete="given-name" required>
+      </div>
+      <fieldset class="campo">
+        <legend>Onde</legend>
+        <div class="opcoes">
+          <label><input type="radio" name="cidade" value="Joinville, no Coven" data-c="joinville" required><span>Joinville</span></label>
+          <label><input type="radio" name="cidade" value="São Paulo (29/10 a 03/11)" data-c="sp"><span>São Paulo · 29/10 a 03/11</span></label>
+          <label><input type="radio" name="cidade" value="Curitiba (05/11)" data-c="curitiba"><span>Curitiba · 05/11</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="campo">
+        <legend>O que você quer</legend>
+        <div class="opcoes">
+          <label><input type="radio" name="tipo" value="Perfuração nova" data-perf required><span>Perfuração nova</span></label>
+          <label><input type="radio" name="tipo" value="Projeto auricular" data-perf><span>Projeto auricular</span></label>
+          <label><input type="radio" name="tipo" value="Perfuração exótica (avaliação)" data-perf data-t="exotica"><span>Exótica</span></label>
+          <label><input type="radio" name="tipo" value="Atualização ou troca de joia"><span>Troca de joia</span></label>
+          <label><input type="radio" name="tipo" value="Retorno, downsize ou avaliação"><span>Retorno ou avaliação</span></label>
+          <label><input type="radio" name="tipo" value="Informações sobre cursos" data-t="curso"><span>Cursos</span></label>
+        </div>
+      </fieldset>
+      <div class="campo" data-so-perf>
+        <label for="local">Qual perfuração ou região</label>
+        <input type="text" id="local" name="local" placeholder="Ex.: hélix, septo, umbigo, vampire bites">
+      </div>
+      <fieldset class="campo" data-so-perf>
+        <legend>Já tem piercing?</legend>
+        <div class="opcoes">
+          <label><input type="radio" name="primeira" value="Vai ser meu primeiro piercing"><span>Vai ser o primeiro</span></label>
+          <label><input type="radio" name="primeira" value="Já tenho outros piercings"><span>Já tenho outros</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="campo">
+        <legend>Melhor período</legend>
+        <div class="opcoes">
+          <label><input type="checkbox" name="periodo" value="manhã"><span>Manhã</span></label>
+          <label><input type="checkbox" name="periodo" value="tarde"><span>Tarde</span></label>
+          <label><input type="checkbox" name="periodo" value="noite"><span>Noite</span></label>
+        </div>
+      </fieldset>
+      <div class="campo">
+        <label for="obs">Observações</label>
+        <textarea id="obs" name="obs" placeholder="Alergias, joia que você já tem, se é menor de idade (precisa vir com responsável)..."></textarea>
+      </div>
+      <div class="campo">
+        <span class="campo-rot">Prévia da mensagem</span>
+        <div class="previa" aria-live="polite"></div>
+      </div>
+      <div class="envio">
+        <button class="btn" type="submit"><span>Enviar no WhatsApp</span><i><svg class="i-seta" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5"/></svg></i></button>
+        <p class="nota">Tem foto da sua orelha ou de referência? Mande no WhatsApp junto.</p>
+      </div>
+      <p class="nota">Prefere escrever do seu jeito? <a href="https://wa.me/5547991017599" target="_blank" rel="noopener">Chame direto no WhatsApp</a>.</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-topo">
+      <a class="rodape-logo" href="./" aria-label="Bruxa do Piercing, início"><img src="assets/img/logo-bruxa-300.webp" srcset="assets/img/logo-bruxa-300.webp 300w, assets/img/logo-bruxa-600.webp 600w" sizes="200px" alt="Bruxa do Piercing" width="600" height="412" loading="lazy"></a>
+      <p>Moni, body piercer em Joinville, SC. Estúdio O Coven.</p>
+    </div>
+    <div class="colunas">
+      <div><h4>Páginas</h4><ul><li><a href="./">Início</a></li><li><a href="./#perfuracoes">Perfurações</a></li><li><a href="trabalhos.html">Trabalhos</a></li><li><a href="agendar.html">Agendar</a></li></ul></div>
+      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5547991017599" target="_blank" rel="noopener">WhatsApp (47) 99101-7599</a></li><li><a href="https://www.instagram.com/bruxadopiercing/" target="_blank" rel="noopener">Instagram @bruxadopiercing</a></li><li><a href="https://www.instagram.com/ocoven.estudio/" target="_blank" rel="noopener">Estúdio @ocoven.estudio</a></li></ul></div>
+      <div><h4>O Coven</h4><ul><li>Joinville, SC</li><li>Endereço: <em class="a-preencher">a preencher</em></li><li>Horários: <em class="a-preencher">a preencher</em></li></ul></div>
+    </div>
+    <div class="base"><span>© <span data-ano>2026</span> Bruxa do Piercing. Todos os direitos reservados.</span><span>Site por <a href="https://lrgz.com.br" target="_blank" rel="noopener">L R G Z</a></span></div>
+  </div>
+</footer>
+<a hidden class="fixo" href="agendar.html" aria-label="Agendar horário"><svg class="i-estrela" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 7 4 10 11 12-7 2-10 5-11 12-1-7-4-10-11-12 7-2 10-5 11-12z"/></svg><span>Agendar</span></a>
+<script src="assets/js/obras.js?v=1"></script>
+<script src="assets/js/site.js?v=1"></script>
+</body>
+</html>
