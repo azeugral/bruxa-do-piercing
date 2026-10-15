@@ -1,6 +1,6 @@
 # Bruxa do Piercing
 
-Site da Moni ([@bruxadopiercing](https://www.instagram.com/bruxadopiercing/)), body piercer em Joinville, SC, no estúdio O Coven ([@ocoven.estudio](https://www.instagram.com/ocoven.estudio/)).
+Site da Moni ([@bruxadopiercing](https://www.instagram.com/bruxadopiercing/)), body piercer em Joinville, SC, no estúdio O Coven ([@ocoven.estudioo](https://www.instagram.com/ocoven.estudioo/)).
 
 Prévia: https://azeugral.github.io/bruxa-do-piercing/ (com `noindex` até ter domínio).
 
