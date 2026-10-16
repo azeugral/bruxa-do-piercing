@@ -99,16 +99,8 @@ def main():
     salvar(Image.open(os.path.join(IG, 'perfil.jpg')).convert('RGB'), IMG, 'moni', (480, 900), 84)
     salvar(Image.open(os.path.join(IG, '079.webp')).convert('RGB'), IMG, 'coven', (640, 1200), 84)
 
-    # favicon: o "U" com a estrela do logo, recortado do logo, sobre café
-    u = lg.crop((round(lg.width * .395), 0, round(lg.width * .585), round(lg.height * .66)))
-    u = u.crop(u.getbbox())
-    for s, nome in ((32, 'favicon-32.png'), (180, 'assets/img/icone-180.png'), (512, 'assets/img/icone-512.png')):
-        fav = Image.new('RGBA', (s, s), CAFE + (255,))
-        e = u.copy()
-        e.thumbnail((int(s * .62), int(s * .8)), Image.LANCZOS)
-        fav.alpha_composite(e, ((s - e.width) // 2, (s - e.height) // 2))
-        fav.convert('RGB').save(os.path.join(SITE, nome))
-    Image.open(os.path.join(SITE, 'assets/img/icone-512.png')).save(os.path.join(SITE, 'favicon.ico'), sizes=[(16, 16), (32, 32), (48, 48)])
+    # favicon: ver tools/favicon.py (o B do logo + a estrela, fundo café arredondado)
+    import runpy; runpy.run_path(os.path.join(AQUI, 'favicon.py'))
 
     # prévia de link 1200x630: logo no quadrado do meio, fotos nas laterais
     og = Image.new('RGB', (1200, 630), CAFE)

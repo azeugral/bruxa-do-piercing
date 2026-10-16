@@ -7,7 +7,7 @@ Prévia: https://azeugral.github.io/bruxa-do-piercing/ (com `noindex` até ter d
 ## Identidade (v1, 14/10/2026)
 
 - **Logo:** o oficial dela, "BRUXA do piercing" com a estrela em cima do U. Recortado da marca d'água da foto 150 (`../_ref/ig/150.webp`) e convertido para fundo transparente por `tools/processar.py`. Ela deve ter o arquivo original em vetor: pedir e trocar.
-- **Favicon:** o U com a estrela, recortado do logo.
+- **Favicon (16/10):** o B do logo, alargado para ler em 32 px, em osso sobre um quadrado café de cantos arredondados, com a estrela do logo em bronze. Gerado por `tools/favicon.py`.
 - **Cores:** café `#16100d`, osso `#ece4d6` (a cor do logo) e bronze `#b5804c` (claro `#d9ab78`). É a anodização dark bronze e o 🤎 que ela usa nas legendas.
 - **Fontes:** Marcellus nos títulos e IBM Plex Sans no texto.
 - **Layout:** nav convencional com o logo à esquerda e o menu à direita (gaveta abaixo de 1100 px), seções simétricas.
