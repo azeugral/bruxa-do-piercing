@@ -1,43 +1,43 @@
-"""Favicon (v2, 16/10): B em Cinzel Decorative Black (capitular com a cauda em gancho, o lado "bruxa"),
-em café, sobre um quadrado de cantos arredondados em degradê bronze, com a estrela de 4 pontas do logo em osso.
-A v1 (o B fino do logo em osso sobre café) virou "um quadrado escuro" na aba: o fundo claro e a letra
-grossa é o que aparece em 16 e 32 px, tanto na aba clara quanto na escura.
-Fonte em ../_ref/fontes/CinzelDecorative.ttf. Rodar depois do processar.py (ele chama este arquivo)."""
-import math, os
+"""Favicon (v3, 19/10): só o B em Cinzel Decorative Black, em café, centralizado pela tinta da letra
+(não pela caixa do texto), sobre um quadrado de cantos arredondados em degradê bronze com um fio claro por dentro.
+v1 (B fino do logo sobre café) sumia na aba; v2 tinha a estrela, que o usuário tirou para ficar minimalista.
+Fonte em ../_ref/fontes/CinzelDecorative.ttf. O processar.py chama este arquivo."""
+import os
 from PIL import Image, ImageDraw, ImageFont
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.dirname(AQUI)
 FONTE = os.path.join(SITE, '..', '_ref', 'fontes', 'CinzelDecorative.ttf')
-CAFE, OSSO = (22, 16, 13), (240, 232, 218)
-BRONZE_CLARO, BRONZE = (219, 174, 122), (156, 104, 58)
-
-
-def estrela(d, cx, cy, r, cor):
-    """astroide: a estrela de 4 pontas finas do logo"""
-    d.polygon([(cx + r * math.cos(t) ** 3, cy + r * math.sin(t) ** 3)
-               for t in (k / 96 * 2 * math.pi for k in range(96))], fill=cor)
+CAFE = (24, 17, 13)
+BRONZE_CLARO, BRONZE = (222, 180, 130), (150, 99, 55)
 
 
 def favicon(S, cantos=True):
     k = 8; s = S * k
+    raio = int(s * .23) if cantos else 0
     fundo = Image.new('RGBA', (s, s))
     fd = ImageDraw.Draw(fundo)
-    for y in range(s):
+    for y in range(s):  # degradê na diagonal suave: luz de cima
         t = y / s
         fd.line((0, y, s, y), fill=tuple(int(BRONZE_CLARO[i] * (1 - t) + BRONZE[i] * t) for i in range(3)) + (255,))
     m = Image.new('L', (s, s))
-    ImageDraw.Draw(m).rounded_rectangle((0, 0, s - 1, s - 1), radius=int(s * .24) if cantos else 0, fill=255)
+    ImageDraw.Draw(m).rounded_rectangle((0, 0, s - 1, s - 1), radius=raio, fill=255)
     im = Image.new('RGBA', (s, s), (0, 0, 0, 0))
     im.paste(fundo, (0, 0), m)
-    d = ImageDraw.Draw(im)
-    f = ImageFont.truetype(FONTE, int(s * .8))
-    bb = d.textbbox((0, 0), 'B', font=f)
-    w, h = bb[2] - bb[0], bb[3] - bb[1]
-    x = (s - w) / 2 - bb[0] - s * .07
-    y = (s - h) / 2 - bb[1] + s * .04
-    d.text((x, y), 'B', font=f, fill=CAFE)
-    estrela(d, x + bb[0] + w + s * .01, y + bb[1] + s * .03, s * .11, OSSO)
+    if S >= 48:  # fio claro por dentro, só onde dá para ver
+        e = int(s * .045)
+        ImageDraw.Draw(im).rounded_rectangle((e, e, s - 1 - e, s - 1 - e), radius=max(raio - e, 0),
+                                             outline=(246, 226, 196, 80), width=max(k, int(s * .006)))
+    # a letra numa camada própria, para medir a tinta e centralizar de verdade
+    f = ImageFont.truetype(FONTE, int(s * (.72 if S >= 48 else .8)))
+    camada = Image.new('L', (s * 2, s * 2))
+    ImageDraw.Draw(camada).text((s // 2, s // 2), 'B', font=f, fill=255)
+    caixa = camada.getbbox()
+    letra = camada.crop(caixa)
+    x = (s - letra.width) // 2
+    y = (s - letra.height) // 2
+    cor = Image.new('RGBA', letra.size, CAFE + (255,))
+    im.paste(cor, (x, y), letra)
     return im.resize((S, S), Image.LANCZOS)
 
 

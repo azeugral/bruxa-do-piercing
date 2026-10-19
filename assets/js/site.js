@@ -42,6 +42,81 @@ window.CONFIG = {
   addEventListener('scroll', aoRolar, { passive: true });
   aoRolar();
 
+  /* abertura: luz de vela tremulando e poeira dourada subindo, bem devagar */
+  var tela = document.querySelector('[data-luz]');
+  if (tela && tela.getContext) {
+    var cx = tela.getContext('2d');
+    var W = 0, H = 0, dpr = 1, motes = [], ativo = true, t0 = performance.now();
+    function medir() {
+      var r = tela.getBoundingClientRect();
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      W = r.width; H = r.height;
+      tela.width = Math.round(W * dpr); tela.height = Math.round(H * dpr);
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(80, W * H / 16000));
+      motes = [];
+      for (var k = 0; k < n; k++) motes.push(novo(true));
+    }
+    function novo(qualquerAltura) {
+      var grande = Math.random() < .12;
+      return {
+        x: Math.random() * W, y: qualquerAltura ? Math.random() * H : H + 10,
+        r: grande ? 2.2 + Math.random() * 2 : .5 + Math.random() * 1.3,
+        v: 5 + Math.random() * 14, fase: Math.random() * 6.28, amp: 6 + Math.random() * 16,
+        a: grande ? .08 + Math.random() * .08 : .25 + Math.random() * .5, pisca: .6 + Math.random() * 1.6
+      };
+    }
+    function luz(x, y, raio, a) {
+      var g = cx.createRadialGradient(x, y, 0, x, y, raio);
+      g.addColorStop(0, 'rgba(201,140,78,' + a + ')');
+      g.addColorStop(.45, 'rgba(160,100,52,' + a * .45 + ')');
+      g.addColorStop(1, 'rgba(22,16,13,0)');
+      cx.fillStyle = g;
+      cx.fillRect(0, 0, W, H);
+    }
+    var ultimo = t0;
+    function quadro(agora) {
+      var t = (agora - t0) / 1000, dt = Math.min(.05, (agora - ultimo) / 1000);
+      ultimo = agora;
+      cx.clearRect(0, 0, W, H);
+      cx.globalCompositeOperation = 'source-over';
+      // tremor de vela: soma de senos lentos e um rápido bem fraco
+      var tremor = .02 * Math.sin(t * 1.7) + .012 * Math.sin(t * 4.3 + 1) + .008 * Math.sin(t * 9.1);
+      var grandeR = Math.max(W, H);
+      luz(W * (.74 + .03 * Math.sin(t * .13)), H * (.32 + .04 * Math.cos(t * .11)), grandeR * .6, .2 + tremor);
+      luz(W * (.1 + .03 * Math.cos(t * .09)), H * (.95 + .03 * Math.sin(t * .17)), grandeR * .45, .1 + tremor * .6);
+      cx.globalCompositeOperation = 'lighter';
+      for (var k = 0; k < motes.length; k++) {
+        var m = motes[k];
+        m.y -= m.v * dt;
+        if (m.y < -10) { motes[k] = novo(false); continue; }
+        var x = m.x + Math.sin(t * .4 + m.fase) * m.amp;
+        var a = m.a * (.55 + .45 * Math.sin(t * m.pisca + m.fase));
+        // some perto do topo, como poeira saindo da luz
+        a *= Math.min(1, m.y / (H * .25));
+        cx.fillStyle = 'rgba(240,200,150,' + Math.max(0, a).toFixed(3) + ')';
+        cx.beginPath(); cx.arc(x, m.y, m.r, 0, 6.283); cx.fill();
+      }
+      if (ativo && !reduz) requestAnimationFrame(quadro);
+    }
+    medir();
+    addEventListener('resize', function () { medir(); if (reduz) quadro(performance.now()); });
+    if (reduz) quadro(performance.now());
+    else {
+      // só anima com a abertura visível e a aba aberta
+      new IntersectionObserver(function (es) {
+        var v = es[0].isIntersecting && !document.hidden;
+        if (v && !ativo) { ativo = true; ultimo = performance.now(); requestAnimationFrame(quadro); }
+        ativo = v;
+      }).observe(tela);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden && !ativo && tela.getBoundingClientRect().bottom > 0) { ativo = true; ultimo = performance.now(); requestAnimationFrame(quadro); }
+        else if (document.hidden) ativo = false;
+      });
+      requestAnimationFrame(quadro);
+    }
+  }
+
   /* revelar ao rolar */
   var io = 'IntersectionObserver' in window && !reduz ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });

@@ -7,7 +7,8 @@ Prévia: https://azeugral.github.io/bruxa-do-piercing/ (com `noindex` até ter d
 ## Identidade (v1, 14/10/2026)
 
 - **Logo:** o oficial dela, "BRUXA do piercing" com a estrela em cima do U. Recortado da marca d'água da foto 150 (`../_ref/ig/150.webp`) e convertido para fundo transparente por `tools/processar.py`. Ela deve ter o arquivo original em vetor: pedir e trocar.
-- **Favicon (v2, 16/10):** B em Cinzel Decorative Black (capitular com cauda em gancho) em café, sobre quadrado de cantos arredondados em degradê bronze, com a estrela de 4 pontas em osso. Lê bem em 16 e 32 px nas abas clara e escura. Gerado por `tools/favicon.py` (fonte em `../_ref/fontes`).
+- **Favicon (v3, 19/10):** só o B em Cinzel Decorative Black, em café, centralizado pela tinta da letra, sobre quadrado arredondado em degradê bronze com um fio claro por dentro (só a partir de 48 px). Gerado por `tools/favicon.py` (fonte em `../_ref/fontes`).
+- **Abertura (19/10):** fundo com luz de vela tremulando de leve e poeira dourada subindo (canvas em `site.js`, para quando sai da tela ou a aba fica oculta, e fica parado com movimento reduzido), mais grão de filme em SVG. Foto do ensaio de Yule com uma segunda foto (orelha, 192) sobreposta e a linha de credenciais.
 - **Cores:** café `#16100d`, osso `#ece4d6` (a cor do logo) e bronze `#b5804c` (claro `#d9ab78`). É a anodização dark bronze e o 🤎 que ela usa nas legendas.
 - **Fontes:** Marcellus nos títulos e IBM Plex Sans no texto.
 - **Layout:** nav convencional com o logo à esquerda e o menu à direita (gaveta abaixo de 1100 px), seções simétricas.

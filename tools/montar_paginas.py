@@ -2,7 +2,7 @@
 Troque V para furar o cache de CSS/JS.
 Marcadores nas páginas: <!--seta-->, <!--estrela--> e <!--zap-->."""
 import os, re, glob
-V = '1'
+V = '2'
 AQUI = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.dirname(AQUI)
 BASE = 'https://azeugral.github.io/bruxa-do-piercing/'  # CONFIRMAR: trocar quando houver domínio
@@ -29,9 +29,9 @@ HEAD = '''<!doctype html>
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Logo Bruxa do Piercing entre duas fotos de perfurações">
 <meta property="og:locale" content="pt_BR">
-<link rel="icon" href="favicon.ico?v=3" sizes="any">
-<link rel="icon" href="favicon-32.png?v=3" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="assets/img/icone-180.png?v=3">
+<link rel="icon" href="favicon.ico?v=4" sizes="any">
+<link rel="icon" href="favicon-32.png?v=4" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
